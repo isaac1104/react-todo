@@ -1,14 +1,18 @@
 import React from "react";
-import Input from "./components/Input";
-import TaskView from "./components/TaskView";
-import Header from "./components/Header";
+import Input from "./Input";
+import TaskView from "./TaskView";
+import Header from "./Header";
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      tasks: []
-    }
+  state = {
+    tasks: [],
+    value: ""
+  }
+
+  handleInputChange = (event) => {
+    this.setState({
+      value: event.target.value
+    });
   }
 
   handleFormSubmit = (event) => {
@@ -17,14 +21,8 @@ class App extends React.Component {
 
   handleAddTask = () => {
     this.setState({
-      tasks: [
-        ...this.state.tasks, {
-          task: document.getElementById("input").value,
-          id: Date.now()
-        }
-      ]
+      tasks: [...this.state.tasks, {task: this.state.value, id: Date.now()}]
     });
-    document.getElementById("input").value = null;
   }
 
   handleDeleteTask = (id) => {
@@ -36,7 +34,7 @@ class App extends React.Component {
     return (
       <div>
         <Header/>
-        <Input handleAddTask={this.handleAddTask} handleFormSubmit={this.handleFormSubmit}/>
+        <Input handleAddTask={this.handleAddTask} handleFormSubmit={this.handleFormSubmit} handleInputChange={this.handleInputChange}/>
         <TaskView tasks={this.state.tasks} id={this.state.id} handleDeleteTask={this.handleDeleteTask}/>
       </div>
     )

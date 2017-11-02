@@ -4,7 +4,7 @@ const Input = (props) => {
   return (
     <div>
       <form onSubmit={props.handleFormSubmit}>
-        <input id="input" type="text" autoComplete="off"></input>
+        <input onChange={props.handleInputChange} id="input" type="text" autoComplete="off"></input>
         <button onClick={props.handleAddTask} type="submit">add</button>
       </form>
     </div>
