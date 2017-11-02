@@ -1,6 +1,7 @@
 import React from "react";
 import Input from "./components/Input";
-import Task from "./components/Task";
+import TaskView from "./components/TaskView";
+import Header from "./components/Header";
 
 class App extends React.Component {
   constructor(props) {
@@ -18,18 +19,20 @@ class App extends React.Component {
     this.setState({
       tasks: [...this.state.tasks, {task: document.getElementById("input").value, id: Date.now()}],
     });
+    document.getElementById("input").value=null;
   }
 
   handleDeleteTask = (id) => {
     const taskList = this.state.tasks.filter(item => item.id !==id);
-    this.setState({tasks: taskList })
+    this.setState({tasks: taskList });
   }
 
   render() {
     return(
       <div>
+        <Header/>
         <Input handleAddTask={this.handleAddTask} handleFormSubmit={this.handleFormSubmit}/>
-        <Task tasks={this.state.tasks} id={this.state.id} handleDeleteTask={this.handleDeleteTask}/>
+        <TaskView tasks={this.state.tasks} id={this.state.id} handleDeleteTask={this.handleDeleteTask}/>
       </div>
     )
   }
