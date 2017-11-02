@@ -23,6 +23,7 @@ class App extends React.Component {
     this.setState({
       tasks: [...this.state.tasks, {task: this.state.value, id: Date.now()}]
     });
+    document.getElementById("input").value = "";
   }
 
   handleDeleteTask = (id) => {
