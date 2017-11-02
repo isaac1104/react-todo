@@ -17,18 +17,23 @@ class App extends React.Component {
 
   handleAddTask = () => {
     this.setState({
-      tasks: [...this.state.tasks, {task: document.getElementById("input").value, id: Date.now()}],
+      tasks: [
+        ...this.state.tasks, {
+          task: document.getElementById("input").value,
+          id: Date.now()
+        }
+      ]
     });
-    document.getElementById("input").value=null;
+    document.getElementById("input").value = null;
   }
 
   handleDeleteTask = (id) => {
-    const taskList = this.state.tasks.filter(item => item.id !==id);
-    this.setState({tasks: taskList });
+    const taskList = this.state.tasks.filter(item => item.id !== id);
+    this.setState({tasks: taskList});
   }
 
   render() {
-    return(
+    return (
       <div>
         <Header/>
         <Input handleAddTask={this.handleAddTask} handleFormSubmit={this.handleFormSubmit}/>
